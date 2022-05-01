@@ -1,11 +1,11 @@
 package com.juliano.carrental.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.juliano.carrental.model.Category;
 
@@ -24,12 +24,14 @@ public class CategoryDao implements IDao<Category> {
 
     @Override
     public Category get(int id) {
+        String query = String.format("SELECT * FROM %s WHERE %s = ?", this.tableName,
+                this.idColumnLabel);
+
         try (Connection con = daoFactory.getConnection();
-                Statement stmt = con.createStatement()) {
-            String query = String.format("SELECT * FROM %s WHERE %s=%d", this.tableName,
-                    this.idColumnLabel,
-                    id);
-            ResultSet rs = stmt.executeQuery(query);
+                PreparedStatement selectPstmt = con.prepareStatement(query)) {
+
+            selectPstmt.setInt(1, id);
+            ResultSet rs = selectPstmt.executeQuery();
             rs.next();
 
             Category category = new Category();
@@ -52,6 +54,7 @@ public class CategoryDao implements IDao<Category> {
     public ArrayList<Category> getAll() {
         try (Connection con = daoFactory.getConnection();
                 Statement stmt = con.createStatement()) {
+
             String query = String.format("SELECT * FROM %s;", this.tableName);
             ResultSet rs = stmt.executeQuery(query);
             ArrayList<Category> categories = new ArrayList<Category>();
@@ -75,16 +78,17 @@ public class CategoryDao implements IDao<Category> {
 
     @Override
     public boolean save(Category category) {
-        String name = category.getName();
-        String description = category.getDescription();
+        String query = String.format(
+                "INSERT INTO %s (%s, %s) VALUES (?, ?)", this.tableName,
+                this.nameColumnLabel, this.descriptionColumnLabel);
 
         try (Connection con = daoFactory.getConnection();
-                Statement stmt = con.createStatement()) {
-            String query = String.format(
-                    "INSERT INTO %s (%s, %s, %s) VALUES ('%s', '%s', '%s')", this.tableName,
-                    this.nameColumnLabel, this.descriptionColumnLabel, this.createdAtColumnLabel,
-                    name, description, DaoFactory.formatTimestamp(new Date()));
-            stmt.execute(query);
+                PreparedStatement insert = con.prepareStatement(query)) {
+
+            insert.setString(1, category.getName());
+            insert.setString(2, category.getDescription());
+            insert.execute();
+
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,32 +98,33 @@ public class CategoryDao implements IDao<Category> {
 
     @Override
     public int update(Category category) {
-        int id = category.getId();
-        String name = category.getName();
-        String description = category.getDescription();
-
         String query = String.format(
-                "UPDATE %s SET name='%s', description='%s' WHERE id='%d'", this.tableName, name,
-                description,
-                id);
+                "UPDATE %s SET %s = ?, %s = ? WHERE %s = ?", this.tableName, this.nameColumnLabel,
+                this.descriptionColumnLabel, this.idColumnLabel);
+
         try (Connection con = daoFactory.getConnection();
-                Statement stmt = con.createStatement()) {
-            return (stmt.executeUpdate(query));
+                PreparedStatement updatePstmt = con.prepareStatement(query)) {
+
+            updatePstmt.setString(1, category.getName());
+            updatePstmt.setString(2, category.getDescription());
+            updatePstmt.setInt(3, category.getId());
+            return (updatePstmt.executeUpdate());
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0;
-
     }
 
     @Override
     public void delete(Category category) {
-        String query = String.format("DELETE FROM %s WHERE %s=%d", this.tableName,
-                this.idColumnLabel,
-                category.getId());
+        String query = String.format("DELETE FROM %s WHERE %s = ?", this.tableName,
+                this.idColumnLabel);
+
         try (Connection con = daoFactory.getConnection();
-                Statement stmt = con.createStatement()) {
-            stmt.execute(query);
+                PreparedStatement deletePstmt = con.prepareStatement(query)) {
+
+            deletePstmt.setInt(1, category.getId());
+            deletePstmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -127,13 +132,12 @@ public class CategoryDao implements IDao<Category> {
 
     @Override
     public void deleteAll() {
-        String query = String.format("DELETE FROM %s;", this.tableName);
+        String query = String.format("DELETE FROM %s", this.tableName);
         try (Connection con = daoFactory.getConnection();
                 Statement stmt = con.createStatement()) {
             stmt.execute(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }
