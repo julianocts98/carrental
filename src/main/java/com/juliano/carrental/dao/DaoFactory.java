@@ -30,4 +30,8 @@ public class DaoFactory {
         return new CategoryDao(this);
     }
 
+    public SpecificationDao getSpecificationDao() {
+        return new SpecificationDao(this);
+    }
+
 }
