@@ -50,6 +50,31 @@ public class CategoryDao implements IDao<Category> {
         return null;
     }
 
+    public Category getByName(String name) {
+        String query = String.format("SELECT * FROM %s WHERE %s = ?", this.tableName,
+                this.nameColumnLabel);
+
+        try (Connection con = daoFactory.getConnection();
+                PreparedStatement selectPstmt = con.prepareStatement(query)) {
+
+            selectPstmt.setString(1, name);
+            ResultSet rs = selectPstmt.executeQuery();
+            rs.next();
+
+            Category category = new Category();
+            category.setId(rs.getInt(this.idColumnLabel));
+            category.setName(rs.getString(this.nameColumnLabel));
+            category.setDescription(rs.getString(this.descriptionColumnLabel));
+            category.setCreatedAt(rs.getTimestamp(this.createdAtColumnLabel));
+
+            return category;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public ArrayList<Category> getAll() {
         try (Connection con = daoFactory.getConnection();
