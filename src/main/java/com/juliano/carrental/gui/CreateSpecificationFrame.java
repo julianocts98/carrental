@@ -47,37 +47,28 @@ public class CreateSpecificationFrame extends JFrame {
 
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.LEADING)
-                        .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(createCategoryBtn,
-                                                        GroupLayout.PREFERRED_SIZE, 224,
-                                                        GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addGap(25)
-                                                .addGroup(gl_contentPane
-                                                        .createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(lblNewLabel,
-                                                                Alignment.TRAILING)
-                                                        .addComponent(lblNewLabel_1,
-                                                                Alignment.TRAILING))
-                                                .addGap(35)
-                                                .addGroup(gl_contentPane
-                                                        .createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(nameTextField,
-                                                                Alignment.TRAILING,
-                                                                GroupLayout.DEFAULT_SIZE, 235,
-                                                                Short.MAX_VALUE)
-                                                        .addComponent(descriptionTextField,
-                                                                GroupLayout.DEFAULT_SIZE, 187,
-                                                                Short.MAX_VALUE))))
-                                .addGap(92)));
+                gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                        .addGroup(gl_contentPane.createSequentialGroup()
+                                .addGap(25)
+                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                        .addComponent(lblNewLabel, Alignment.TRAILING)
+                                        .addComponent(lblNewLabel_1, Alignment.TRAILING))
+                                .addGap(35)
+                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                        .addComponent(nameTextField, Alignment.TRAILING,
+                                                GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                                        .addComponent(descriptionTextField,
+                                                GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
+                                .addGap(92))
+                        .addGroup(gl_contentPane.createSequentialGroup()
+                                .addContainerGap(248, Short.MAX_VALUE)
+                                .addComponent(createCategoryBtn, GroupLayout.PREFERRED_SIZE, 115,
+                                        GroupLayout.PREFERRED_SIZE)
+                                .addGap(73)));
         gl_contentPane.setVerticalGroup(
                 gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap(44, Short.MAX_VALUE)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblNewLabel)
                                         .addComponent(nameTextField, GroupLayout.PREFERRED_SIZE,
@@ -90,9 +81,9 @@ public class CreateSpecificationFrame extends JFrame {
                                                 GroupLayout.PREFERRED_SIZE,
                                                 GroupLayout.DEFAULT_SIZE,
                                                 GroupLayout.PREFERRED_SIZE))
-                                .addGap(47)
+                                .addGap(52)
                                 .addComponent(createCategoryBtn)
-                                .addGap(68)));
+                                .addGap(63)));
         contentPane.setLayout(gl_contentPane);
     }
 }
