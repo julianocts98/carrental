@@ -2,16 +2,16 @@ package com.juliano.carrental.dao;
 
 import java.util.ArrayList;
 
-public interface IDao<Model> {
-    public Model get(int id);
+public interface IDao<T> {
+    public T get(int id);
 
-    public ArrayList<Model> getAll();
+    public ArrayList<T> getAll();
 
-    public boolean save(Model obj);
+    public boolean save(T obj);
 
-    public int update(Model obj);
+    public int update(T obj);
 
-    public void delete(Model obj);
+    public void delete(T obj);
 
     public void deleteAll();
 

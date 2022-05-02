@@ -4,17 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import com.juliano.carrental.model.Brand;
 import com.juliano.carrental.model.Car;
 import com.juliano.carrental.model.Category;
 
-public class CarDao implements IDao<Car> {
-    private DaoFactory daoFactory;
-    private final String tableName = "car";
+public class CarDao extends Dao<Car> {
     private final String carImageTableName = "car_image";
-    private final String idColumnLabel = "id";
+
     private final String nameColumnLabel = "name";
     private final String descriptionColumnLabel = "description";
     private final String dailyRateColumnLabel = "daily_rate";
@@ -26,17 +23,31 @@ public class CarDao implements IDao<Car> {
     private final String createdAtColumnLabel = "created_at";
 
     public CarDao(DaoFactory daoFactory) {
-        this.daoFactory = daoFactory;
+        super(daoFactory, "car", "id");
     }
 
     @Override
-    public Car get(int id) {
+    protected Car modelFromResultSet(ResultSet rs) throws SQLException {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public ArrayList<Car> getAll() {
+    protected int getModelId(Car model) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    protected PreparedStatement getInsertPreparedStatementWithModelValues(Connection con, Car model)
+            throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    protected PreparedStatement getUpdatePreparedStatementWithModelValues(Connection con, Car model)
+            throws SQLException {
         // TODO Auto-generated method stub
         return null;
     }
