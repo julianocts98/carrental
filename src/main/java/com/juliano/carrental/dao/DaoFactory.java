@@ -42,4 +42,8 @@ public class DaoFactory {
         return new CarDao(this);
     }
 
+    public CustomerDao getCustomerDao() {
+        return new CustomerDao(this);
+    }
+
 }
