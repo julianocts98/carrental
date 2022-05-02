@@ -34,4 +34,12 @@ public class DaoFactory {
         return new SpecificationDao(this);
     }
 
+    public BrandDao getBrandDao() {
+        return new BrandDao(this);
+    }
+
+    public CarDao getCarDao() {
+        return new CarDao(this);
+    }
+
 }
