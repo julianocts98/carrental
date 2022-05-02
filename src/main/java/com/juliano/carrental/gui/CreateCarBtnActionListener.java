@@ -162,7 +162,15 @@ public class CreateCarBtnActionListener implements ActionListener {
         car.setColor(this.colorTextField.getText());
         car.setAvailable(availableCheckBox.isSelected());
 
-        daoFactory.getCarDao().save(car);
+        // TODO treat exception
+        if (!daoFactory.getCarDao().save(car)) {
+            JOptionPane.showMessageDialog(this.frame, "Ocorreu um erro no cadastro do carro!",
+                    "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(this.frame, "O carro foi cadastrado com sucesso!", "SUCESSO",
+                JOptionPane.PLAIN_MESSAGE);
 
     }
 
