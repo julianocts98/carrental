@@ -19,15 +19,10 @@ import com.juliano.carrental.model.Car;
 import com.juliano.carrental.model.Category;
 import com.juliano.carrental.model.Specification;
 
-public class CarDaoTest {
-
-    private DaoFactory daoFactory;
+public class CarDaoTest extends DaoTest {
 
     public CarDaoTest() {
-        String url = "jdbc:postgresql://localhost:5432/testCarRental";
-        String user = "postgres";
-        String password = "password";
-        this.daoFactory = new DaoFactory(new DataSource(url, user, password));
+        super();
     }
 
     private CarDao getCarDao() {

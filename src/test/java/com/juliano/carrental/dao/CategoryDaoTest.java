@@ -16,15 +16,10 @@ import org.junit.jupiter.api.Test;
 
 import com.juliano.carrental.model.Category;
 
-public class CategoryDaoTest {
-
-    private DaoFactory daoFactory;
+public class CategoryDaoTest extends DaoTest {
 
     public CategoryDaoTest() {
-        String url = "jdbc:postgresql://localhost:5432/testCarRental";
-        String user = "postgres";
-        String password = "password";
-        this.daoFactory = new DaoFactory(new DataSource(url, user, password));
+        super();
     }
 
     /**
