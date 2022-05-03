@@ -7,7 +7,7 @@ import com.juliano.carrental.gui.CreateCategoryFrame;
 public class App {
     private static DaoFactory daoFactory;
     static {
-        String url = "jdbc:postgresql://localhost:5432/carRental";
+        String url = "jdbc:postgresql://localhost:5432/car_rental";
         String user = "postgres";
         String password = "password";
         daoFactory = new DaoFactory(new DataSource(url, user, password));
