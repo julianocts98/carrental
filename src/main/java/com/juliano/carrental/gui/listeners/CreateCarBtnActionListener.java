@@ -10,19 +10,19 @@ import java.util.ArrayList;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.juliano.carrental.dao.DaoFactory;
+import com.juliano.carrental.gui.CreateCarFrame;
 import com.juliano.carrental.model.Brand;
 import com.juliano.carrental.model.Car;
 import com.juliano.carrental.model.Category;
 import com.juliano.carrental.model.Specification;
 
 public class CreateCarBtnActionListener implements ActionListener {
-    private JFrame frame;
+    private CreateCarFrame frame;
     private DaoFactory daoFactory;
     private JTextField nameTextField;
     private JTextField descriptionTextField;
@@ -33,11 +33,10 @@ public class CreateCarBtnActionListener implements ActionListener {
     private JTextField licensePlateTextField;
     private JTextField colorTextField;
     private JCheckBox availableCheckBox;
-    private String imgPath;
     private ArrayList<Specification> specifications;
 
-    public CreateCarBtnActionListener(JFrame frame, DaoFactory daoFactory, JTextField nameTextField,
-            JTextField descriptionTextField,
+    public CreateCarBtnActionListener(CreateCarFrame frame, DaoFactory daoFactory,
+            JTextField nameTextField, JTextField descriptionTextField,
             JComboBox<String> categoryComboBox, JComboBox<String> brandComboBox,
             JList<String> specificationList, JTextField dailyRateTextField,
             JTextField licensePlateTextField, JTextField colorTextField,
@@ -54,14 +53,6 @@ public class CreateCarBtnActionListener implements ActionListener {
         this.colorTextField = colorTextField;
         this.availableCheckBox = availableCheckBox;
         this.specifications = specifications;
-    }
-
-    public String getImgPath() {
-        return imgPath;
-    }
-
-    public void setImgPath(String imgPath) {
-        this.imgPath = imgPath;
     }
 
     @Override
@@ -101,8 +92,14 @@ public class CreateCarBtnActionListener implements ActionListener {
             this.dailyRateTextField.grabFocus();
             return;
         }
-        if (!this.imgPath.endsWith("png") && !this.imgPath.endsWith("jpg")
-                && !this.imgPath.endsWith("jpeg")) {
+        String imagePath = this.frame.getImagePath();
+        if (imagePath == null) {
+            JOptionPane.showMessageDialog(this.frame, "Selecione uma imagem!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!imagePath.endsWith("png") && !imagePath.endsWith("jpg")
+                && !imagePath.endsWith("jpeg")) {
             JOptionPane.showMessageDialog(this.frame,
                     "O formato da imagem selecionada não é aceito! Insira somente JPG/JPEG ou PNG",
                     "ERRO",
@@ -146,7 +143,7 @@ public class CreateCarBtnActionListener implements ActionListener {
         int dailyRateInCents = (int) Math.round(dailyRateDecimals * 100);
         car.setDailyRate(dailyRateInCents);
 
-        File file = new File(this.imgPath);
+        File file = new File(imagePath);
         FileInputStream fis;
 
         try {

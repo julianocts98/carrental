@@ -15,14 +15,10 @@ import com.juliano.carrental.gui.CreateCarFrame;
 public class LoadImageBtnActionListener implements ActionListener {
     private CreateCarFrame frame;
     private JLabel imgLabel;
-    private String imgPath;
-    private CreateCarBtnActionListener createCarBtnActionListener;
 
-    public LoadImageBtnActionListener(CreateCarFrame frame, JLabel imgLabel,
-            CreateCarBtnActionListener createCarBtnActionListener) {
+    public LoadImageBtnActionListener(CreateCarFrame frame, JLabel imgLabel) {
         this.frame = frame;
         this.imgLabel = imgLabel;
-        this.createCarBtnActionListener = createCarBtnActionListener;
     }
 
     @Override
@@ -34,7 +30,7 @@ public class LoadImageBtnActionListener implements ActionListener {
         fc.setFileFilter(filter);
         if (fc.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
             try {
-                this.createCarBtnActionListener.setImgPath(fc.getSelectedFile().getAbsolutePath());
+                this.frame.setImagePath(fc.getSelectedFile().getAbsolutePath());
                 ImageIcon imgIcon = new ImageIcon(fc.getSelectedFile().toURI().toURL());
 
                 Image image = imgIcon.getImage(); // transform it

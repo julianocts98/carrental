@@ -27,12 +27,22 @@ import com.juliano.carrental.model.Specification;
 
 public class CreateCarFrame extends JFrame {
     private DaoFactory daoFactory;
+    private String imagePath;
+
     private JPanel contentPane;
     private JTextField nameTextField;
     private JTextField descriptionTextField;
     private JTextField dailyRateTextField;
     private JTextField licensePlateTextField;
     private JTextField colorTextField;
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     /**
      * Create the frame.
@@ -112,24 +122,18 @@ public class CreateCarFrame extends JFrame {
 
         JButton createCarBtn = new JButton("Cadastrar");
 
-        // TODO HIGH COUPLING ALERT!!
-        CreateCarBtnActionListener createCarBtnActionListener = new CreateCarBtnActionListener(this,
-                daoFactory, nameTextField,
-                descriptionTextField, categoryComboBox, brandComboBox,
+        createCarBtn.addActionListener(new CreateCarBtnActionListener(this,
+                daoFactory, nameTextField, descriptionTextField, categoryComboBox, brandComboBox,
                 specificationList, dailyRateTextField, licensePlateTextField,
-                colorTextField, availableCheckbox, specifications);
-        createCarBtn.addActionListener(createCarBtnActionListener);
+                colorTextField, availableCheckbox, specifications));
 
         JScrollPane listScrollPane = new JScrollPane();
 
         JButton loadImageBtn = new JButton("Carregar Imagem");
         JLabel imgLabel = new JLabel("");
 
-        // PASSING ANOTHER ACTION LISTENER AS A ARGUMENT TO A NEW ONE, ONLY TO BE ABLE
-        // TO DEAL
-        // WITH IMG PATHS
         loadImageBtn.addActionListener(
-                new LoadImageBtnActionListener(this, imgLabel, createCarBtnActionListener));
+                new LoadImageBtnActionListener(this, imgLabel));
 
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
@@ -344,4 +348,5 @@ public class CreateCarFrame extends JFrame {
         contentPane.setLayout(gl_contentPane);
 
     }
+
 }
