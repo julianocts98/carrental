@@ -193,23 +193,6 @@ public class CreateRentalFrame extends JFrame {
 
         carImageLabel = new JLabel();
 
-//        File file = new File("/home/juliano/Desktop/veloster.jpg");
-//        FileInputStream fis;
-//        try {
-//            fis = new FileInputStream(file);
-//            ByteArrayInputStream bais = new ByteArrayInputStream(fis.readAllBytes());
-//            Image image = ImageIO.read(bais).getScaledInstance(150, 150,
-//                    java.awt.Image.SCALE_SMOOTH);
-//            ImageIcon imgIcon = new ImageIcon(image);
-//            carImageLabel.setIcon(imgIcon);
-//        } catch (FileNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-
         availableCarsTable = new JTable();
         populateAvailableCarsTable(availableCarsTable, getAvailableCars());
         availableCarsTable.addMouseListener(
