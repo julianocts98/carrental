@@ -57,13 +57,13 @@ public class CreateCarBtnActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        if (this.nameTextField.getText() == "") {
+        if (this.nameTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(this.frame, "Digite o nome do carro!", "ERRO",
                     JOptionPane.ERROR_MESSAGE);
             this.nameTextField.grabFocus();
             return;
         }
-        if (this.descriptionTextField.getText() == "") {
+        if (this.descriptionTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(this.frame, "Digite a descrição do carro!", "ERRO",
                     JOptionPane.ERROR_MESSAGE);
             this.descriptionTextField.grabFocus();
@@ -85,7 +85,7 @@ public class CreateCarBtnActionListener implements ActionListener {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.dailyRateTextField.getText() == "") {
+        if (this.dailyRateTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(this.frame,
                     "Digite a o valor do aluguel diário do carro!", "ERRO",
                     JOptionPane.ERROR_MESSAGE);
@@ -106,13 +106,13 @@ public class CreateCarBtnActionListener implements ActionListener {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.licensePlateTextField.getText() == "") {
+        if (this.licensePlateTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(this.frame, "Digite a placa do carro!", "ERRO",
                     JOptionPane.ERROR_MESSAGE);
             this.licensePlateTextField.grabFocus();
             return;
         }
-        if (this.colorTextField.getText() == "") {
+        if (this.colorTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(this.frame, "Digite a cor do carro!", "ERRO",
                     JOptionPane.ERROR_MESSAGE);
             this.colorTextField.grabFocus();
