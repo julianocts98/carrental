@@ -168,6 +168,7 @@ public class CreateCarBtnActionListener implements ActionListener {
         }
         JOptionPane.showMessageDialog(this.frame, "O carro foi cadastrado com sucesso!", "SUCESSO",
                 JOptionPane.PLAIN_MESSAGE);
+        this.frame.clearFields();
 
     }
 

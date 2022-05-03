@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -35,6 +36,11 @@ public class CreateCarFrame extends JFrame {
     private JTextField dailyRateTextField;
     private JTextField licensePlateTextField;
     private JTextField colorTextField;
+    private JComboBox brandComboBox;
+    private JComboBox categoryComboBox;
+    private JList specificationsJList;
+    private JCheckBox availableCheckbox;
+    private JLabel imageLabel;
 
     public String getImagePath() {
         return imagePath;
@@ -93,7 +99,7 @@ public class CreateCarFrame extends JFrame {
             brandsNames[i + 1] = brands.get(i).getName();
         }
 
-        JComboBox brandComboBox = new JComboBox(brandsNames);
+        brandComboBox = new JComboBox(brandsNames);
 
         ArrayList<Category> categories = this.daoFactory.getCategoryDao().getAll();
         String[] categoriesNames = new String[categories.size() + 1];
@@ -102,7 +108,7 @@ public class CreateCarFrame extends JFrame {
             categoriesNames[i + 1] = categories.get(i).getName();
         }
 
-        JComboBox categoryComboBox = new JComboBox(categoriesNames);
+        categoryComboBox = new JComboBox(categoriesNames);
 
         ArrayList<Specification> specifications = this.daoFactory.getSpecificationDao().getAll();
         String[] specificationsNames = new String[specifications.size()];
@@ -110,7 +116,7 @@ public class CreateCarFrame extends JFrame {
             specificationsNames[i] = specifications.get(i).getName();
         }
 
-        JList specificationList = new JList(specificationsNames);
+        specificationsJList = new JList(specificationsNames);
 
         licensePlateTextField = new JTextField();
         licensePlateTextField.setColumns(10);
@@ -118,23 +124,22 @@ public class CreateCarFrame extends JFrame {
         colorTextField = new JTextField();
         colorTextField.setColumns(10);
 
-        JCheckBox availableCheckbox = new JCheckBox("Disponível");
+        availableCheckbox = new JCheckBox("Disponível");
         availableCheckbox.setSelected(true);
 
         JButton createCarBtn = new JButton("Cadastrar");
 
         createCarBtn.addActionListener(new CreateCarBtnActionListener(this,
                 daoFactory, nameTextField, descriptionTextField, categoryComboBox, brandComboBox,
-                specificationList, dailyRateTextField, licensePlateTextField,
+                specificationsJList, dailyRateTextField, licensePlateTextField,
                 colorTextField, availableCheckbox, specifications));
 
         JScrollPane listScrollPane = new JScrollPane();
 
         JButton loadImageBtn = new JButton("Carregar Imagem");
-        JLabel imgLabel = new JLabel("");
-
+        imageLabel = new JLabel("");
         loadImageBtn.addActionListener(
-                new LoadImageBtnActionListener(this, imgLabel));
+                new LoadImageBtnActionListener(this, imageLabel));
 
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
@@ -249,7 +254,7 @@ public class CreateCarFrame extends JFrame {
                                                         .addGroup(gl_contentPane
                                                                 .createParallelGroup(
                                                                         Alignment.LEADING)
-                                                                .addComponent(imgLabel,
+                                                                .addComponent(imageLabel,
                                                                         GroupLayout.PREFERRED_SIZE,
                                                                         134,
                                                                         GroupLayout.PREFERRED_SIZE)
@@ -267,7 +272,7 @@ public class CreateCarFrame extends JFrame {
                                                 .addContainerGap()
                                                 .addComponent(lblNewLabel_6)
                                                 .addGap(18)
-                                                .addComponent(imgLabel)
+                                                .addComponent(imageLabel)
                                                 .addGap(18)
                                                 .addComponent(loadImageBtn)
                                                 .addGap(27)
@@ -345,9 +350,21 @@ public class CreateCarFrame extends JFrame {
                                 .addComponent(createCarBtn)
                                 .addGap(33)));
 
-        listScrollPane.setViewportView(specificationList);
+        listScrollPane.setViewportView(specificationsJList);
         contentPane.setLayout(gl_contentPane);
 
+    }
+
+    public void clearFields() {
+        nameTextField.setText("");
+        descriptionTextField.setText("");
+        brandComboBox.setSelectedIndex(-1);
+        categoryComboBox.setSelectedIndex(-1);
+        specificationsJList.setSelectedIndices(new int[] {});
+        dailyRateTextField.setText("");
+        imageLabel.setIcon(new ImageIcon());
+        licensePlateTextField.setText("");
+        colorTextField.setText("");
     }
 
 }
