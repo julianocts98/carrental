@@ -119,6 +119,7 @@ public class CreateCarFrame extends JFrame {
         colorTextField.setColumns(10);
 
         JCheckBox availableCheckbox = new JCheckBox("Disponível");
+        availableCheckbox.setSelected(true);
 
         JButton createCarBtn = new JButton("Cadastrar");
 
