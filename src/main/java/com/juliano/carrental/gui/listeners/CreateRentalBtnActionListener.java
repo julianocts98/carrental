@@ -61,18 +61,9 @@ public class CreateRentalBtnActionListener implements ActionListener {
             return;
         }
 
-//        long diffInMilis = endCalendar.getTimeInMillis() - startCalendar.getTimeInMillis();
-//        int days = (int) TimeUnit.MILLISECONDS.toDays(diffInMilis);
-
-//        if (days <= 0) {
-//            JOptionPane.showMessageDialog(this.frame, "O tempo mínimo de locação é de um dia!",
-//                    "ERRO",
-//                    JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-
         int rentalTotalValue = this.daoFactory.getRentalDao()
-                .getTotalRentalValueByCalendars(this.frame.getSelectedCar(), startCalendar, endCalendar);
+                .getTotalRentalValueByCalendars(this.frame.getSelectedCar(), startCalendar,
+                        endCalendar);
         if (rentalTotalValue == -1) {
             JOptionPane.showMessageDialog(this.frame, "O tempo mínimo de locação é de um dia!",
                     "ERRO", JOptionPane.ERROR_MESSAGE);
