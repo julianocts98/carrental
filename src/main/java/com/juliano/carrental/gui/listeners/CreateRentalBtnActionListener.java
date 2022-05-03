@@ -70,6 +70,17 @@ public class CreateRentalBtnActionListener implements ActionListener {
             return;
         }
 
+        double rentalTotalValueDecimal = (double) rentalTotalValue / 100;
+        String confirmMessage = String.format(
+                "Deseja realmente alugar este carro?\n O valor total será de: R$ %.2f",
+                rentalTotalValueDecimal);
+
+        if (JOptionPane.showConfirmDialog(this.frame, confirmMessage, "CONFIRMAÇÃO",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE) == JOptionPane.NO_OPTION) {
+            return;
+        }
+
         Rental rental = new Rental();
         rental.setCar(this.frame.getSelectedCar());
         rental.setCustomer(this.frame.getSelectedCustomer());
