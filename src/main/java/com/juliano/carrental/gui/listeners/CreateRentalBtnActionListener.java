@@ -98,6 +98,7 @@ public class CreateRentalBtnActionListener implements ActionListener {
         this.frame.clearCarFields();
 
         this.frame.setAvailableCars(this.daoFactory.getCarDao().getAvailableCars());
+        this.frame.populateAvailableCarsTable(availableCarsTable, this.frame.getAvailableCars());
     }
 
 }
