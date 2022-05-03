@@ -34,7 +34,7 @@ public class LoadImageBtnActionListener implements ActionListener {
                 ImageIcon imgIcon = new ImageIcon(fc.getSelectedFile().toURI().toURL());
 
                 Image image = imgIcon.getImage(); // transform it
-                Image newimg = image.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
+                Image newimg = image.getScaledInstance(150, 70, java.awt.Image.SCALE_SMOOTH);
                 imgIcon = new ImageIcon(newimg); // transform it back
                 this.imgLabel.setIcon(imgIcon);
 
