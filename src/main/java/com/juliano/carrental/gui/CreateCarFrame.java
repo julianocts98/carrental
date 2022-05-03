@@ -51,7 +51,7 @@ public class CreateCarFrame extends JFrame {
         this.daoFactory = daoFactory;
         setMinimumSize(new Dimension(600, 500));
         setTitle("Cadastro de Carro");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 517, 420);
         contentPane = new JPanel();
         contentPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
