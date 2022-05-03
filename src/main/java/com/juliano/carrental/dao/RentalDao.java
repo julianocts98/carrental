@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.GregorianCalendar;
+import java.util.concurrent.TimeUnit;
 
 import com.juliano.carrental.model.Car;
 import com.juliano.carrental.model.Customer;
@@ -84,6 +86,17 @@ public class RentalDao extends Dao<Rental> {
         ps.setInt(2, rental.getTotal());
         ps.setInt(3, rental.getId());
         return ps;
+    }
+
+    public int getTotalRentalValueByCalendars(Car car, GregorianCalendar startCalendar,
+            GregorianCalendar endCalendar) {
+        long diffInMilis = endCalendar.getTimeInMillis()
+                - startCalendar.getTimeInMillis();
+        int days = (int) TimeUnit.MILLISECONDS.toDays(diffInMilis);
+        if (days <= 0) {
+            return -1;
+        }
+        return car.getDailyRate() * days;
     }
 
 }
