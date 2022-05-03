@@ -19,6 +19,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.juliano.carrental.dao.DaoFactory;
+import com.juliano.carrental.gui.listeners.CreateCarBtnActionListener;
+import com.juliano.carrental.gui.listeners.LoadImageBtnActionListener;
 import com.juliano.carrental.model.Brand;
 import com.juliano.carrental.model.Category;
 import com.juliano.carrental.model.Specification;

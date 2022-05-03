@@ -1,4 +1,4 @@
-package com.juliano.carrental.gui;
+package com.juliano.carrental.gui.listeners;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import com.juliano.carrental.gui.CreateCarFrame;
 
 public class LoadImageBtnActionListener implements ActionListener {
     private CreateCarFrame frame;

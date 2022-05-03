@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import org.jdatepicker.JDatePicker;
 
 import com.juliano.carrental.dao.DaoFactory;
+import com.juliano.carrental.gui.listeners.CreateCustomerBtnActionListener;
 
 public class CreateCustomerFrame extends JFrame {
     private static final long serialVersionUID = 9137318202706842012L;

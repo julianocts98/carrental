@@ -1,4 +1,4 @@
-package com.juliano.carrental.gui;
+package com.juliano.carrental.gui.listeners;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import org.jdatepicker.JDatePicker;
 
 import com.juliano.carrental.dao.DaoFactory;
+import com.juliano.carrental.gui.CreateRentalFrame;
 import com.juliano.carrental.model.Car;
 
 public class AvailableCarsTableMouseAdapter extends MouseAdapter {

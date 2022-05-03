@@ -1,4 +1,4 @@
-package com.juliano.carrental.gui;
+package com.juliano.carrental.gui.listeners;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import org.jdatepicker.JDatePicker;
 
 import com.juliano.carrental.dao.DaoFactory;
+import com.juliano.carrental.gui.CreateRentalFrame;
 
 public class RentalDatePickersPropertyChangeListener implements PropertyChangeListener {
     private CreateRentalFrame frame;

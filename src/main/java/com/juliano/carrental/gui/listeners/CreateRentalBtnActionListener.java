@@ -1,4 +1,4 @@
-package com.juliano.carrental.gui;
+package com.juliano.carrental.gui.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import org.jdatepicker.JDatePicker;
 
 import com.juliano.carrental.dao.DaoFactory;
+import com.juliano.carrental.gui.CreateRentalFrame;
 import com.juliano.carrental.model.Rental;
 
 public class CreateRentalBtnActionListener implements ActionListener {

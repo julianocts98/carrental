@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.juliano.carrental.dao.DaoFactory;
+import com.juliano.carrental.gui.listeners.CreateCategoryBtnActionListener;
 
 public class CreateCategoryFrame extends JFrame {
 
