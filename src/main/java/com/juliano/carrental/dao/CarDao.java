@@ -1,10 +1,15 @@
 package com.juliano.carrental.dao;
 
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import com.juliano.carrental.model.Brand;
 import com.juliano.carrental.model.Car;
@@ -153,24 +158,6 @@ public class CarDao extends Dao<Car> {
         return allCars;
     }
 
-    public void loadCarImage(Car car) {
-        String getImageQuery = String.format("SELECT %s FROM %s WHERE %s = ?",
-                this.carImageColumnLabel, this.carImageTableName, this.carImageCarIdColumnLabel);
-        try (Connection con = daoFactory.getConnection();
-                PreparedStatement ps = con.prepareStatement(getImageQuery)) {
-            con.setAutoCommit(false);
-            ps.setInt(1, car.getId());
-
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            car.setImage(rs.getBytes(this.carImageColumnLabel));
-            rs.close();
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public ArrayList<Specification> getCarSpecifications(Car car) {
         ArrayList<Specification> specifications = new ArrayList<Specification>();
         String selectCarSpecificationIdsQuery = String.format("SELECT %s FROM %s WHERE %s = ?",
@@ -205,6 +192,36 @@ public class CarDao extends Dao<Car> {
         }
         return 0;
 
+    private void loadCarImage(Car car) {
+        String getImageQuery = String.format("SELECT %s FROM %s WHERE %s = ?",
+                this.carImageColumnLabel, this.carImageTableName, this.carImageCarIdColumnLabel);
+        try (Connection con = daoFactory.getConnection();
+                PreparedStatement ps = con.prepareStatement(getImageQuery)) {
+            con.setAutoCommit(false);
+            ps.setInt(1, car.getId());
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            car.setImage(rs.getBytes(this.carImageColumnLabel));
+            rs.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ImageIcon getImageIconByCar(Car car, int width, int height) {
+        loadCarImage(car);
+        ImageIcon imageIcon = null;
+        try {
+            ByteArrayInputStream bais = new ByteArrayInputStream(car.getImage());
+            Image image = ImageIO.read(bais).getScaledInstance(width, height,
+                    java.awt.Image.SCALE_SMOOTH);
+            imageIcon = new ImageIcon(image); // transform it back
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return imageIcon;
     }
 
 }
