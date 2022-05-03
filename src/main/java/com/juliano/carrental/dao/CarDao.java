@@ -192,11 +192,14 @@ public class CarDao extends Dao<Car> {
 
         try (Connection con = daoFactory.getConnection();
                 PreparedStatement updateCar = con.prepareStatement(updateCarQuery)) {
+            updateCar.setBoolean(1, false);
+            updateCar.setInt(2, car.getId());
             return updateCar.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0;
+    }
 
     private void loadCarImage(Car car) {
         String getImageQuery = String.format("SELECT %s FROM %s WHERE %s = ?",
