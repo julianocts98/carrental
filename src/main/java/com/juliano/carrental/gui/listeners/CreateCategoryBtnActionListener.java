@@ -32,6 +32,19 @@ public class CreateCategoryBtnActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (this.nameTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this.frame, "Preencha o campo do nome!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            this.nameTextField.grabFocus();
+            return;
+        }
+        if (this.descriptionTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this.frame, "Preencha o campo da descrição!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            this.descriptionTextField.grabFocus();
+            return;
+        }
+
         Category category = new Category();
         category.setName(this.nameTextField.getText());
         category.setDescription(this.descriptionTextField.getText());

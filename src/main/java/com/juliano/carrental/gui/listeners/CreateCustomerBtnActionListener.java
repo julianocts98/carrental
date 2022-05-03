@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import org.jdatepicker.JDatePicker;
@@ -39,6 +40,45 @@ public class CreateCustomerBtnActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (this.nameTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this.frame, "Preencha o campo do nome!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            this.nameTextField.grabFocus();
+            return;
+        }
+
+        if (this.birthDatePicker.getModel().getValue() == null) {
+            JOptionPane.showMessageDialog(this.frame, "Selecione uma data de aniversário!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (this.emailTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this.frame, "Preencha o campo do email!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            this.emailTextField.grabFocus();
+            return;
+        }
+
+        if (this.driverLicenseTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this.frame, "Preencha o campo da CNH!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            this.driverLicenseTextField.grabFocus();
+            return;
+        }
+        if (this.addressTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this.frame, "Preencha o campo do endereço!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            this.addressTextField.grabFocus();
+            return;
+        }
+        if (this.phoneNumberTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this.frame, "Preencha o campo do telefone!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            this.phoneNumberTextField.grabFocus();
+            return;
+        }
+
         Customer customer = new Customer();
         customer.setName(this.nameTextField.getText());
 

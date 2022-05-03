@@ -32,6 +32,19 @@ public class CreateSpecificationBtnActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (this.nameTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this.frame, "Preencha o campo do nome!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            this.nameTextField.grabFocus();
+            return;
+        }
+        if (this.descriptionTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this.frame, "Preencha o campo da descrição!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            this.descriptionTextField.grabFocus();
+            return;
+        }
+
         Specification specification = new Specification();
         specification.setName(this.nameTextField.getText());
         specification.setDescription(this.descriptionTextField.getText());
