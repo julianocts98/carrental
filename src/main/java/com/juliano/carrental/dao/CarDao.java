@@ -180,6 +180,12 @@ public class CarDao extends Dao<Car> {
         return specifications;
     }
 
+    public ArrayList<Car> getAvailableCars() {
+        ArrayList<Car> cars = getAll();
+        cars.removeIf(c -> !c.isAvailable());
+        return cars;
+    }
+
     public int rentACar(Car car) {
         String updateCarQuery = String.format("UPDATE %s SET %s = ? WHERE %s = ?", this.tableName,
                 this.availableColumnLabel, this.idColumnLabel);
