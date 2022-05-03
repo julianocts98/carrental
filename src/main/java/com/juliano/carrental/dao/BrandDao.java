@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.juliano.carrental.model.Brand;
 
@@ -47,7 +48,14 @@ public class BrandDao extends Dao<Brand> {
     }
 
     public Brand getByName(String name) {
-        return this.getByStringColumn(this.nameColumnLabel, name).get(0);
+        ArrayList<Brand> allBrands = super.getAll();
+
+        for (Brand brand : allBrands) {
+            if (brand.getName().equals(name)) {
+                return brand;
+            }
+        }
+        return null;
     }
 
     @Override

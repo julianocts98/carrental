@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.juliano.carrental.model.Category;
 
@@ -58,7 +59,13 @@ public class CategoryDao extends Dao<Category> {
     }
 
     public Category getByName(String name) {
-        return this.getByStringColumn(this.nameColumnLabel, name).get(0);
+        ArrayList<Category> allCategories = super.getAll();
+        for (Category category : allCategories) {
+            if (category.getName().equals(name)) {
+                return category;
+            }
+        }
+        return null;
     }
 
 }
