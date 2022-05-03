@@ -2,10 +2,11 @@ package com.juliano.carrental;
 
 import com.juliano.carrental.dao.DaoFactory;
 import com.juliano.carrental.dao.DataSource;
-import com.juliano.carrental.gui.CreateCategoryFrame;
+import com.juliano.carrental.gui.MainFrame;
 
 public class App {
     private static DaoFactory daoFactory;
+
     static {
         String url = "jdbc:postgresql://localhost:5432/car_rental";
         String user = "postgres";
@@ -14,8 +15,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-
-        CreateCategoryFrame frame = new CreateCategoryFrame(daoFactory);
+        MainFrame frame = new MainFrame(daoFactory);
         frame.setVisible(true);
     }
 }
