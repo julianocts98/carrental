@@ -46,4 +46,8 @@ public class DaoFactory {
         return new CustomerDao(this);
     }
 
+    public RentalDao getRentalDao() {
+        return new RentalDao(this);
+    }
+
 }
