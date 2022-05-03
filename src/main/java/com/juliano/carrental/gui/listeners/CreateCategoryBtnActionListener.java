@@ -57,8 +57,7 @@ public class CreateCategoryBtnActionListener implements ActionListener {
             nameTextField.grabFocus();
             return;
         }
-        String successMessage = String.format("A categoria %s foi cadastrada com sucesso!",
-                this.nameTextField.getText());
+        String successMessage = "A categoria foi cadastrada com sucesso!";
         JOptionPane.showMessageDialog(this.frame, successMessage, "SUCESSO",
                 JOptionPane.PLAIN_MESSAGE);
         this.clearTextFields();

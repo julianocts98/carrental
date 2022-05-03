@@ -91,7 +91,13 @@ public class CreateCustomerBtnActionListener implements ActionListener {
         customer.setAddress(this.addressTextField.getText());
         customer.setPhoneNumber(this.phoneNumberTextField.getText());
 
-        this.daoFactory.getCustomerDao().save(customer);
+        if (!this.daoFactory.getCustomerDao().save(customer)) {
+            JOptionPane.showMessageDialog(this.frame, "O usuário não pôde ser cadastrado!", "ERRO",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(this.frame, "Usuário cadastrado com sucesso!", "SUCESSO",
+                JOptionPane.PLAIN_MESSAGE);
 
     }
 
