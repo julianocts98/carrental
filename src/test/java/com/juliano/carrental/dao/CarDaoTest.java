@@ -177,7 +177,8 @@ public class CarDaoTest extends DaoTest {
         try (Connection con = daoFactory.getConnection();
                 Statement stmt = con.createStatement()) {
 
-            String[] tableNames = { "car_image", "car", "category", "brand", "specification" };
+            String[] tableNames = { "car_specification", "car_image", "car", "category", "brand",
+                    "specification" };
             for (String table : tableNames) {
                 String query = String.format(queryFormat, table);
                 stmt.execute(query);
@@ -208,6 +209,7 @@ public class CarDaoTest extends DaoTest {
         int dailyRate = (int) Math.round(50.00 * 100);
         car.setDailyRate(dailyRate);
 
+        // TODO fix test, needs an ArrayList of Specification to be inserted
         this.getCarDao().save(car);
 
         try (Connection con = this.daoFactory.getConnection();
