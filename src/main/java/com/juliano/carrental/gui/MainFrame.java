@@ -45,13 +45,10 @@ public class MainFrame extends JFrame {
         createCustomerMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (createCustomerFrame == null) {
+                if (createCustomerFrame == null || !createCustomerFrame.isDisplayable()) {
                     createCustomerFrame = new CreateCustomerFrame(daoFactory);
                     createCustomerFrame.setVisible(true);
-                    return;
                 }
-                createCustomerFrame.setVisible(!createCustomerFrame.isVisible());
-
             }
         });
         creationMenu.add(createCustomerMenu);
@@ -60,12 +57,10 @@ public class MainFrame extends JFrame {
         createCategoryMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (createCategoryFrame == null) {
+                if (createCategoryFrame == null || !createCategoryFrame.isDisplayable()) {
                     createCategoryFrame = new CreateCategoryFrame(daoFactory);
                     createCategoryFrame.setVisible(true);
-                    return;
                 }
-                createCategoryFrame.setVisible(!createCategoryFrame.isVisible());
 
             }
         });
@@ -75,12 +70,10 @@ public class MainFrame extends JFrame {
         createSpecificationMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (createSpecificationFrame == null) {
+                if (createSpecificationFrame == null || !createSpecificationFrame.isDisplayable()) {
                     createSpecificationFrame = new CreateSpecificationFrame(daoFactory);
                     createSpecificationFrame.setVisible(true);
-                    return;
                 }
-                createSpecificationFrame.setVisible(!createSpecificationFrame.isVisible());
             }
         });
         creationMenu.add(createSpecificationMenu);
@@ -89,12 +82,10 @@ public class MainFrame extends JFrame {
         createCarMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (createCarFrame == null) {
+                if (createCarFrame == null || !createCarFrame.isDisplayable()) {
                     createCarFrame = new CreateCarFrame(daoFactory);
                     createCarFrame.setVisible(true);
-                    return;
                 }
-                createCarFrame.setVisible(!createCarFrame.isVisible());
             }
         });
         creationMenu.add(createCarMenu);
@@ -103,12 +94,10 @@ public class MainFrame extends JFrame {
         createRentalMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (createRentalFrame == null) {
+                if (createRentalFrame == null || !createRentalFrame.isDisplayable()) {
                     createRentalFrame = new CreateRentalFrame(daoFactory);
                     createRentalFrame.setVisible(true);
-                    return;
                 }
-                createRentalFrame.setVisible(!createRentalFrame.isVisible());
             }
         });
         creationMenu.add(createRentalMenu);
