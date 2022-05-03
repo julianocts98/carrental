@@ -58,26 +58,6 @@ public abstract class Dao<Model> implements IDao<Model> {
         return null;
     }
 
-    protected ArrayList<Model> getByStringColumn(String columnName, String value) {
-        ArrayList<Model> models = new ArrayList<Model>();
-        String query = String.format("SELECT * FROM %s WHERE %s = ?", this.tableName,
-                columnName);
-
-        try (Connection con = daoFactory.getConnection();
-                PreparedStatement selectPstmt = con.prepareStatement(query)) {
-            selectPstmt.setString(1, value);
-            ResultSet rs = selectPstmt.executeQuery();
-            while (rs.next()) {
-                models.add(modelFromResultSet(rs));
-            }
-            return models;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     @Override
     public ArrayList<Model> getAll() {
         String query = String.format("SELECT * FROM %s",
